@@ -10,4 +10,13 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\APIFramework.Business\APIFramework.Business.csproj" />
+    <ProjectReference Include="..\APIFramework.Data\APIFramework.Data.csproj" />
+    <ProjectReference Include="..\APIFramework.Interfaces\APIFramework.Interfaces.csproj" />
+    <ProjectReference Include="..\APIFramework.Mock.Business\APIFramework.Mock.Business.csproj" />
+    <ProjectReference Include="..\APIFramework.MockData\APIFramework.MockData.csproj" />
+    <ProjectReference Include="..\APIFramework.Models\APIFramework.Models.csproj" />
+  </ItemGroup>
+
 </Project>

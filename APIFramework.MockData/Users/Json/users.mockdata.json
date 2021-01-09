@@ -1,0 +1,18 @@
+[
+  {
+    "id": "3ff2a60d-47a7-49b7-85f7-1177e23103d0",
+    "name": "Sakkie",
+    "surname": "van Zyl",
+    "email": "sakkie.vanzyl@eoh.co.za",
+    "phonenumber": "0839457853",
+    "roles": [ "user", "admin" ]
+  },
+  {
+    "id": "61897cdc4-1318-4dcb-97d8-f2fa0417870b",
+    "name": "Pieter",
+    "surname": "Linde",
+    "email": "pieter.linde@eoh.co.za",
+    "phonenumber": "0725557853",
+    "roles": [ "user" ]
+  }
+]

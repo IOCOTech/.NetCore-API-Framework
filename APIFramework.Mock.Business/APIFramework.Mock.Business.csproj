@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\APIFramework.Data\APIFramework.Data.csproj" />
     <ProjectReference Include="..\APIFramework.Interfaces\APIFramework.Interfaces.csproj" />
+    <ProjectReference Include="..\APIFramework.MockData\APIFramework.MockData.csproj" />
     <ProjectReference Include="..\APIFramework.Models\APIFramework.Models.csproj" />
   </ItemGroup>
 
