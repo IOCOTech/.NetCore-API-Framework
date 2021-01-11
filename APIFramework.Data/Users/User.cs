@@ -19,12 +19,12 @@ namespace APIFramework.Data.Users
         public string SaveUser(Models.Users.User user)
         {
 
-            logger.LogInformation($"User - userId - {user.id}");
-            logger.LogTrace($"ClaimsInput - ObjectId - {user.id}", user.id);
+            logger.LogInformation($"User - userId - {user.Id}");
+            logger.LogTrace($"ClaimsInput - ObjectId - {user.Id}", user.Id);
             
-            if (string.IsNullOrEmpty(user.id))
+            if (string.IsNullOrEmpty(user.Id))
             {
-                user.id = Guid.NewGuid().ToString();
+                user.Id = Guid.NewGuid().ToString();
                 //context.Users.Add(user);
             }
             else
@@ -32,7 +32,7 @@ namespace APIFramework.Data.Users
                 //context.Users.Update(user);
             }
             //context.SaveChanges();
-            return user.id;
+            return user.Id;
         }
         public Models.Users.User GetUser(string userId)
         {

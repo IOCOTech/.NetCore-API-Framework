@@ -1,16 +1,16 @@
-﻿using System;
+﻿using FluentValidation;
+using FluentValidation.Results;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+using APIFramework.Models.ExtensionMethods;
+using APIFramework.Models.Interfaces;
 
 namespace APIFramework.Models.Users
 {
-    public class User
+    public class User : AbstractValidator<User>, IModelValidation
     {
         [JsonPropertyName("id")]
-        public string id { get; set; }
+        public string Id { get; set; }
         [JsonPropertyName("name")]
         public string Name { get; set; }
         [JsonPropertyName("surname")]
@@ -21,5 +21,19 @@ namespace APIFramework.Models.Users
         public string Phonenumber { get; set; }
         [JsonPropertyName("roles")]
         public List<string> Roles { get; set; } = new List<string>();
+
+        public User()
+        {
+            RuleFor(user => user.Id).NotEmpty().WithMessage("Id cannot be null");
+        }
+        public ValidationResult Validate(bool throwValidationException = true)
+        {
+            ValidationResult result = this.Validate(this);
+            if (!result.IsValid && throwValidationException)
+            {
+                throw new ValidationException(result.ErrorsAsJson());
+            }
+            return result;
+        }
     }
 }

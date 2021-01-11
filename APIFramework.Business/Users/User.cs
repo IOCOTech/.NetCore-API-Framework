@@ -1,10 +1,5 @@
-﻿using APIFramework.Interfaces.Business.Users;
-using APIFramework.Interfaces.Data.Users;
-using System;
-using System.Collections.Generic;
+﻿using FluentValidation.Results;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace APIFramework.Business.Users
 {
@@ -24,6 +19,7 @@ namespace APIFramework.Business.Users
 
         public string SaveUser(Models.Users.User user)
         {
+            user.Validate();
             var result = context.SaveUser(user);
             return result;
         }

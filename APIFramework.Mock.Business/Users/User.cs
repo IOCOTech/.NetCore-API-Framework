@@ -11,7 +11,7 @@ namespace APIFramework.Mock.Business.Users
 
         public string SaveUser(Models.Users.User user)
         {
-            return MockData.Users.UserData.FirstUser.id;
+            return MockData.Users.UserData.FirstUser.Id;
         }
     }
 }
