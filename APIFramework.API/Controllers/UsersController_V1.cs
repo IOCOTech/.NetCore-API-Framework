@@ -3,14 +3,16 @@ using Microsoft.Extensions.Logging;
 
 namespace APIFramework.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
+    [ApiVersion("1.0")]
+    [ApiVersion("1.1")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController_V1 : ControllerBase
     {
         private readonly Interfaces.Business.Users.IUser context;
-        private readonly ILogger<UsersController> logger;
+        private readonly ILogger<UsersController_V1> logger;
 
-        public UsersController(Interfaces.Business.Users.IUser _context, ILogger<UsersController> logger)
+        public UsersController_V1(Interfaces.Business.Users.IUser _context, ILogger<UsersController_V1> logger)
         {
             context = _context;
             this.logger = logger;
