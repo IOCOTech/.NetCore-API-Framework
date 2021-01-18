@@ -101,11 +101,13 @@ namespace APIFramework.API.Configuration.Startup
         }
         public static string GetUserId(ClaimsPrincipal user)
         {
+            Guard.ArgumentNotNull(user);
             return user.Claims.ToList().FirstOrDefault(x => x.Type == "sub")?.Value;
         }
 
         public static string GetRequestBodyContents(HttpRequest Request)
         {
+            Guard.ArgumentNotNull(Request);
             try
             {
                 var bodyText = "";
@@ -117,7 +119,9 @@ namespace APIFramework.API.Configuration.Startup
 
                 return bodyText;
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception)
+#pragma warning restore CA1031 // Do not catch general exception types
             {
                 //Ignore exception and return empty string.
                 //Do not want to throw exception in global API Exception handler

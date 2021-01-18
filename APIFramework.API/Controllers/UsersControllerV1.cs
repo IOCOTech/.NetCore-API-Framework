@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Guards;
 
 namespace APIFramework.API.Controllers
 {
@@ -12,11 +11,11 @@ namespace APIFramework.API.Controllers
     public class UsersControllerV1 : ControllerBase
     {
         private readonly Interfaces.Business.Users.IUser context;
-        private readonly ILogger<UsersControllerV1> logger;
+        private readonly ILogger<UsersControllerV2> logger;
 
-        public UsersControllerV1(Interfaces.Business.Users.IUser _context, ILogger<UsersControllerV1> logger)
+        public UsersControllerV1(Interfaces.Business.Users.IUser context, ILogger<UsersControllerV2> logger)
         {
-            context = _context;
+            this.context = context;
             this.logger = logger;
         }
 

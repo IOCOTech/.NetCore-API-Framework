@@ -3,10 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.VisualBasic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace APIFramework.API.Configuration.Startup
@@ -62,27 +59,20 @@ namespace APIFramework.API.Configuration.Startup
             string authentication = context.Request.Headers["Authentication"];
 
             // If no authorization header found, nothing to process further
-            if (string.IsNullOrEmpty(authentication))
+#pragma warning disable CA1508 // Avoid dead conditional code
+            if (!string.IsNullOrEmpty(authentication))
+#pragma warning restore CA1508 // Avoid dead conditional code
             {
-                context.NoResult();
-                //TODO: Add logging for no header
+                if (authentication.StartsWith("Token ", StringComparison.OrdinalIgnoreCase))
+                {
+                    context.Token = authentication["Token ".Length..].Trim();
+                    //TODO: Add logging for success
+                }
+
                 return Task.CompletedTask;
             }
-
-            if (authentication.StartsWith("Token ", StringComparison.OrdinalIgnoreCase))
-            {
-                context.Token = authentication["Token ".Length..].Trim();
-                //TODO: Add logging for success
-            }
-
-            // If no token found, no further work possible
-            if (string.IsNullOrEmpty(context.Token))
-            {
-                context.NoResult();
-                //TODO: Add logging for no token
-                return Task.CompletedTask;
-            }
-
+            context.NoResult();
+            //TODO: Add logging for no header
             return Task.CompletedTask;
         }
     }

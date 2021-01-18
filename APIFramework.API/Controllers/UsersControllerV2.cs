@@ -15,9 +15,9 @@ namespace APIFramework.API.Controllers
         private readonly Interfaces.Business.Users.IUser context;
         private readonly ILogger<UsersControllerV2> logger;
 
-        public UsersControllerV2(Interfaces.Business.Users.IUser _context, ILogger<UsersControllerV2> logger)
+        public UsersControllerV2(Interfaces.Business.Users.IUser context, ILogger<UsersControllerV2> logger)
         {
-            context = _context;
+            this.context = context;
             this.logger = logger;
         }
 
@@ -25,7 +25,7 @@ namespace APIFramework.API.Controllers
         [HttpGet("{userId}", Name = "Get")]
         public ActionResult<Models.Users.User> Get(string userId)
         {
-            this.logger.LogInformation("Get user", null);
+            this.logger.LogInformation("Get user", userId);
             throw new NotImplementedException();
         }
 

@@ -26,7 +26,7 @@ namespace APIFramework.Models.Users
 
         public User()
         {
-            validator = new UserValidator(this);
+            validator = new UserValidator();
         }
         public ValidationResult Validate(bool throwValidationException = true)
         {
@@ -41,11 +41,8 @@ namespace APIFramework.Models.Users
 
     internal class UserValidator : AbstractValidator<User>
     {
-        private User user;
-
-        public UserValidator(User user)
+        public UserValidator()
         {
-            this.user = user;
             RuleFor(user => user.Id).NotEmpty().WithMessage("Id cannot be null");
         }
     }
