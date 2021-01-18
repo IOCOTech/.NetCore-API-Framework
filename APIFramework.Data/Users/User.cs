@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
-using System.Linq;
 
 namespace APIFramework.Data.Users
 {
@@ -18,9 +17,8 @@ namespace APIFramework.Data.Users
 
         public string SaveUser(Models.Users.User user)
         {
-
             logger.LogInformation($"User - userId - {user.Id}");
-            logger.LogTrace($"ClaimsInput - ObjectId - {user.Id}", user.Id);
+            logger.LogTrace($"User - userId - {user.Id}", user.Id);
             
             if (string.IsNullOrEmpty(user.Id))
             {

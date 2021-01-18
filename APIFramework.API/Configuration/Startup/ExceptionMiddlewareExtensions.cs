@@ -5,20 +5,19 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
+using Guards;
 
 namespace APIFramework.API.Configuration.Startup
 {
     public static class ExceptionMiddlewareExtensions
     {
-        private static ILogger<StaticLoggerHelper> logger = StaticLogger.logger;
+        private static readonly ILogger<StaticLoggerHelper> logger = StaticLogger.Logger;
 
         public static void ConfigureExceptionHandler(this IApplicationBuilder app) =>
             app.UseExceptionHandler(appError =>
@@ -49,7 +48,7 @@ namespace APIFramework.API.Configuration.Startup
                             {
                                 StatusCode = (int)HttpStatusCode.BadRequest,
                                 Message = $"Validation Error: {baseException.Message}"
-                            }.ToString());
+                            }.ToString()).ConfigureAwait(false);
 
 
                         }
@@ -69,7 +68,7 @@ namespace APIFramework.API.Configuration.Startup
                             {
                                 StatusCode = (int)HttpStatusCode.BadRequest,
                                 Message = $"Refer to logs"
-                            }.ToString());
+                            }.ToString()).ConfigureAwait(false);
                         }
                         else
                         {
@@ -86,7 +85,7 @@ namespace APIFramework.API.Configuration.Startup
                             {
                                 StatusCode = context.Response.StatusCode,
                                 Message = "Refer to logs"
-                            }.ToString());
+                            }.ToString()).ConfigureAwait(false);
                         }
 
                     }
@@ -95,11 +94,15 @@ namespace APIFramework.API.Configuration.Startup
             });
         public static string GetClaims(ClaimsPrincipal user)
         {
+            Guard.ArgumentNotNull(user, nameof(user));
             var claims = new StringBuilder();
             user.Claims.ToList().ForEach(claim => claims.Append($"{claim.Type}:{claim.Value} | "));
             return claims.ToString();
         }
-        public static string GetUserId(ClaimsPrincipal user) => user.Claims.ToList().FirstOrDefault(x => x.Type == "sub")?.Value;
+        public static string GetUserId(ClaimsPrincipal user)
+        {
+            return user.Claims.ToList().FirstOrDefault(x => x.Type == "sub")?.Value;
+        }
 
         public static string GetRequestBodyContents(HttpRequest Request)
         {

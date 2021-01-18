@@ -1,20 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Guards;
 
 namespace APIFramework.API.Controllers
 {
     [Route("api/user")]
-    [ApiVersion("2.0")]
+    [ControllerName("User")]
+    [ApiVersion("1.0")]
+    [ApiVersion("1.1")]
     [ApiController]
-    public class UsersController_V2 : ControllerBase
+    public class UsersControllerV1 : ControllerBase
     {
         private readonly Interfaces.Business.Users.IUser context;
-        private readonly ILogger<UsersController_V2> logger;
+        private readonly ILogger<UsersControllerV1> logger;
 
-        public UsersController_V2(Interfaces.Business.Users.IUser _context, ILogger<UsersController_V2> logger)
+        public UsersControllerV1(Interfaces.Business.Users.IUser _context, ILogger<UsersControllerV1> logger)
         {
             context = _context;
             this.logger = logger;
@@ -24,7 +24,9 @@ namespace APIFramework.API.Controllers
         [HttpGet("{userId}", Name = "Get")]
         public ActionResult<Models.Users.User> Get(string userId)
         {
-            throw new NotImplementedException();
+            this.logger.LogInformation("Get user", null);
+            var result = context.GetUser(userId);
+            return Ok(result);
         }
 
         // POST: api/Users
@@ -35,13 +37,13 @@ namespace APIFramework.API.Controllers
             return Ok(result);
         }
 
-        //// PUT api/<UserController_V2>/5
+        //// PUT: api/Users/5
         //[HttpPut("{id}")]
         //public void Put(int id, [FromBody] string value)
         //{
         //}
 
-        //// DELETE api/<UserController_V2>/5
+        //// DELETE: api/ApiWithActions/5
         //[HttpDelete("{id}")]
         //public void Delete(int id)
         //{

@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using APIFramework.API.Helpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,15 +47,13 @@ namespace APIFramework.API.Configuration.Startup
 
         private static Task AuthenticationFailed(AuthenticationFailedContext arg)
         {
-            //TODO: Add logging
-            var s = $"AuthenticationFailed: {arg.Exception.Message}";
+            StaticLogger.Logger.LogInformation($"Authentication failed: {arg.Exception.Message}", (object)new object[] { arg });
             return Task.FromResult(0);
         }
 
         private static Task AuthenticationSuccess(TokenValidatedContext arg)
         {
-            //TODO: Add logging
-            var s = $"AuthenticationSuccess for Access Token: {arg}";
+            StaticLogger.Logger.LogInformation($"Authentication Success: {arg.HttpContext.Session.Id }", (object)new object[] { arg });
             return Task.FromResult(0);
         }
 
@@ -70,7 +71,7 @@ namespace APIFramework.API.Configuration.Startup
 
             if (authentication.StartsWith("Token ", StringComparison.OrdinalIgnoreCase))
             {
-                context.Token = authentication.Substring("Token ".Length).Trim();
+                context.Token = authentication["Token ".Length..].Trim();
                 //TODO: Add logging for success
             }
 

@@ -7,7 +7,7 @@ using APIFramework.Models.Interfaces;
 
 namespace APIFramework.Models.Users
 {
-    public class User : AbstractValidator<User>, IModelValidation
+    public class User : IModelValidation
     {
         [JsonPropertyName("id")]
         public string Id { get; set; }
@@ -21,19 +21,32 @@ namespace APIFramework.Models.Users
         public string Phonenumber { get; set; }
         [JsonPropertyName("roles")]
         public List<string> Roles { get; set; } = new List<string>();
+        [JsonIgnore]
+        private readonly AbstractValidator<User> validator;
 
         public User()
         {
-            RuleFor(user => user.Id).NotEmpty().WithMessage("Id cannot be null");
+            validator = new UserValidator(this);
         }
         public ValidationResult Validate(bool throwValidationException = true)
         {
-            ValidationResult result = this.Validate(this);
+            ValidationResult result = validator.Validate(this);
             if (!result.IsValid && throwValidationException)
             {
                 throw new ValidationException(result.ErrorsAsJson());
             }
             return result;
+        }
+    }
+
+    internal class UserValidator : AbstractValidator<User>
+    {
+        private User user;
+
+        public UserValidator(User user)
+        {
+            this.user = user;
+            RuleFor(user => user.Id).NotEmpty().WithMessage("Id cannot be null");
         }
     }
 }

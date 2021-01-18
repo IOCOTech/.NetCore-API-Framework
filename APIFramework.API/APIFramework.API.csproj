@@ -6,7 +6,17 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <!--This to get passed an issue: https://github.com/dotnet/roslyn/issues/37876#issuecomment-738042719-->
+    <NoWarn>$(NoWarn);CA1014</NoWarn>
+    <NoWarn>$(NoWarn);CA1052</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="IOCOTech.Guards" Version="1.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" NoWarn="NU1605" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.1" NoWarn="NU1605" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.2.0" />

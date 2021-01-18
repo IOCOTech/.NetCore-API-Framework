@@ -9,10 +9,10 @@ namespace APIFramework.API.Helpers
 
     public static class StaticLogger
     {
-        public static ILogger<StaticLoggerHelper> logger { get; set; }
-        public static void Initialize(this ILogger<StaticLoggerHelper> _logger)
+        public static ILogger<StaticLoggerHelper> Logger { get; set; }
+        public static void Initialize(this ILogger<StaticLoggerHelper> logger)
         {
-            logger = _logger;
+            Logger = logger;
         }
     } 
 }
