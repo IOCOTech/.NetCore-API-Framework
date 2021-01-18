@@ -21,6 +21,7 @@ namespace APIFramework.API.Controllers
 
         // GET: api/Users/5
         [HttpGet("{userId}", Name = "Get")]
+        [ApiVersion("1.0")]
         public ActionResult<Models.Users.User> Get(string userId)
         {
             this.logger.LogInformation("Get user", null);
@@ -30,6 +31,8 @@ namespace APIFramework.API.Controllers
 
         // POST: api/Users
         [HttpPost]
+        [ApiVersion("1.0")]
+        [ApiVersion("1.1")]
         public ActionResult<string> Post([FromBody] Models.Users.User user)
         {
             var result = context.SaveUser(user);

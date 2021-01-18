@@ -29,13 +29,13 @@ namespace APIFramework.API.Controllers
             throw new NotImplementedException();
         }
 
-        // POST: api/Users
-        [HttpPost]
-        public ActionResult<string> Post([FromBody] Models.Users.User user)
-        {
-            var result = context.SaveUser(user);
-            return Ok(result);
-        }
+        //// POST: api/Users
+        //[HttpPost]
+        //public ActionResult<string> Post([FromBody] Models.Users.User user)
+        //{
+        //    var result = context.SaveUser(user);
+        //    return Ok(result);
+        //}
 
         //// PUT api/<UserController_V2>/5
         //[HttpPut("{id}")]
