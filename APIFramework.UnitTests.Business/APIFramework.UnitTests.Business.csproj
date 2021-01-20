@@ -4,4 +4,16 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.16.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\APIFramework.Business\APIFramework.Business.csproj" />
+    <ProjectReference Include="..\APIFramework.Interfaces\APIFramework.Interfaces.csproj" />
+    <ProjectReference Include="..\APIFramework.MockData\APIFramework.MockData.csproj" />
+    <ProjectReference Include="..\APIFramework.Models\APIFramework.Models.csproj" />
+  </ItemGroup>
+
 </Project>
