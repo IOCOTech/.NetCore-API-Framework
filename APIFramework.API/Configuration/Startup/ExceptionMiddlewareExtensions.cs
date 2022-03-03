@@ -1,4 +1,4 @@
-﻿using APIFramework.API.Helpers;
+using APIFramework.API.Helpers;
 using APIFramework.Models.Errors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -102,7 +102,8 @@ namespace APIFramework.API.Configuration.Startup
         public static string GetUserId(ClaimsPrincipal user)
         {
             Guard.ArgumentNotNull(user);
-            return user.Claims.ToList().FirstOrDefault(x => x.Type == "sub")?.Value;
+            if (user == null) throw new Exception("User cannot be null");
+            return user.Claims.ToList().First(x => x.Type == "sub").Value;
         }
 
         public static string GetRequestBodyContents(HttpRequest Request)

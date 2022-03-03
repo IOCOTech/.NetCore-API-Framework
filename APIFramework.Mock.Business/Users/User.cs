@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace APIFramework.Mock.Business.Users
 {

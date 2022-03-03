@@ -1,4 +1,4 @@
-﻿using FluentValidation.Results;
+using FluentValidation.Results;
 using System.Linq;
 
 namespace APIFramework.Business.Users

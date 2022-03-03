@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace APIFramework.API.Controllers
@@ -24,7 +24,7 @@ namespace APIFramework.API.Controllers
         [ApiVersion("1.0")]
         public ActionResult<Models.Users.User> Get(string userId)
         {
-            this.logger.LogInformation("Get user", null);
+            this.logger.LogInformation("Get user");
             var result = context.GetUser(userId);
             return Ok(result);
         }

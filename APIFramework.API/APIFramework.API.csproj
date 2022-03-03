@@ -1,41 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>d7899247-635f-420b-93c4-bf1f5374cb66</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-    <AnalysisLevel>latest</AnalysisLevel>
-    <!--This to get passed an issue: https://github.com/dotnet/roslyn/issues/37876#issuecomment-738042719-->
-    <NoWarn>$(NoWarn);CA1014</NoWarn>
-    <NoWarn>$(NoWarn);CA1052</NoWarn>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="IOCOTech.Guards" Version="1.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" NoWarn="NU1605" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.1" NoWarn="NU1605" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="4.2.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.10" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.20.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\APIFramework.Business\APIFramework.Business.csproj" />
     <ProjectReference Include="..\APIFramework.Data\APIFramework.Data.csproj" />
     <ProjectReference Include="..\APIFramework.Interfaces\APIFramework.Interfaces.csproj" />
-    <ProjectReference Include="..\APIFramework.Mock.Business\APIFramework.Mock.Business.csproj" />
-    <ProjectReference Include="..\APIFramework.MockData\APIFramework.MockData.csproj" />
     <ProjectReference Include="..\APIFramework.Models\APIFramework.Models.csproj" />
+    <ProjectReference Include="..\APIFramework.MockData\APIFramework.MockData.csproj" />
   </ItemGroup>
 
 </Project>

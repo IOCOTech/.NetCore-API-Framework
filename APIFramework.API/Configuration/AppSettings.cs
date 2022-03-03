@@ -1,26 +1,20 @@
-﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
 
 namespace APIFramework.API.Configuration
 {
-    internal static class AppSettings
+    internal class AppSettings : Interfaces.API.IAppSettings
     {
-        private static IConfiguration Configuration { get; set; }
-        public static void InitializeAppSettings(this IConfiguration config)
+        private IConfiguration Config { get; }
+        public AppSettings(IConfiguration config)
         {
-            Configuration = config;
+            Config = config;
+            ApplicationMonitoringKey = Config.GetValue<string>("corsOriginsAllowed");
+            Config.Bind("Authentication", Authentication);
+            //Config.Bind("EFCosmosConfig", EfCosmosDBSettings);
+            //Config.Bind("RapidAPISettings", RapidAPISettings);
         }
+        public string ApplicationMonitoringKey { get; private set; } = string.Empty;
 
-        internal static class EntityFramwork
-        {
-            internal static bool SeedDBData => Configuration.GetValue<bool>("SeedDBData");
-        }
-        internal static class Authentication
-        {
-            internal static string Authority => Configuration.GetValue<string>("Authentication:Authority");
-            internal static string AudienceIdToken => Configuration.GetValue<string>("Authentication:AudienceIdToken");
-            internal static string AudienceAccessToken => Configuration.GetValue<string>("Authentication:AudienceAccessToken");
-        }
-        internal static bool UseMockdata => Configuration.GetValue<bool>("UseMockdata");
-
+        public Models.AppSettings.Authentication Authentication { get; private set; } = new();
     }
 }

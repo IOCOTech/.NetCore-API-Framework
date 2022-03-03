@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,11 +14,15 @@ namespace APIFramework.MockData.Helpers
         {
             var assembly = Assembly.GetExecutingAssembly();
             string resourceName = assembly.GetManifestResourceNames().Single(str => str.EndsWith(fileName));
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-            using (StreamReader reader = new StreamReader(stream))
+
+            using (Stream? stream = assembly.GetManifestResourceStream(resourceName))
             {
-                var strJson = reader.ReadToEnd();
-                return strJson;
+                if (stream == null) throw new Exception("Resource not found");
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    var strJson = reader.ReadToEnd();
+                    return strJson;
+                }
             }
         }
     }

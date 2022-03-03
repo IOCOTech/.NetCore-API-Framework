@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace APIFramework.Models.Errors
     public class APIError
     {
         public int StatusCode { get; set; }
-        public string Message { get; set; }
+        public string Message { get; set; } = String.Empty;
 
         public override string ToString() => JsonConvert.SerializeObject(this);
     }

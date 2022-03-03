@@ -1,17 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="IOCOTech.Guards" Version="1.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\APIFramework.Interfaces\APIFramework.Interfaces.csproj" />
     <ProjectReference Include="..\APIFramework.Models\APIFramework.Models.csproj" />
+    <ProjectReference Include="..\APIFramework.MockData\APIFramework.MockData.csproj" />
+    <ProjectReference Include="..\APIFramework.Mock.Business\APIFramework.Mock.Business.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IOCOTech.Guards" Version="1.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
 
 </Project>

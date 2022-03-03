@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 using FluentValidation.Results;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
@@ -10,15 +10,15 @@ namespace APIFramework.Models.Users
     public class User : IModelValidation
     {
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get; set; } = string.Empty;
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
         [JsonPropertyName("surname")]
-        public string Surname { get; set; }
+        public string Surname { get; set; } = string.Empty;
         [JsonPropertyName("email")]
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
         [JsonPropertyName("phonenumber")]
-        public string Phonenumber { get; set; }
+        public string Phonenumber { get; set; } = string.Empty;
         [JsonPropertyName("roles")]
         public List<string> Roles { get; set; } = new List<string>();
         [JsonIgnore]

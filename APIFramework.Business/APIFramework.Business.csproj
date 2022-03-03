@@ -1,13 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\APIFramework.Data\APIFramework.Data.csproj" />
     <ProjectReference Include="..\APIFramework.Interfaces\APIFramework.Interfaces.csproj" />
     <ProjectReference Include="..\APIFramework.Models\APIFramework.Models.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IOCOTech.Guards" Version="1.0.3" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
 
 </Project>

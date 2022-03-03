@@ -1,4 +1,4 @@
-﻿using APIFramework.Models.Errors;
+using APIFramework.Models.Errors;
 using FluentValidation.Results;
 using Newtonsoft.Json;
 using System.Collections.Generic;

@@ -1,22 +1,19 @@
-﻿using APIFramework.API.Helpers;
+using APIFramework.API.Helpers;
+using APIFramework.Interfaces.API;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
 
 namespace APIFramework.API.Configuration.Startup
 {
     public static class Security
     {
-        public static void SetupSecurity(this IServiceCollection services)
+        public static void SetupSecurity(this IServiceCollection services, IAppSettings settings)
         {
             services.AddAuthentication()
                 .AddJwtBearer("bearer", jwtOptions =>
                 {
-                    jwtOptions.Authority = AppSettings.Authentication.Authority;
-                    jwtOptions.Audience = AppSettings.Authentication.AudienceIdToken;
+                    jwtOptions.Authority = settings.Authentication.Authority;
+                    jwtOptions.Audience = settings.Authentication.AudienceIdToken;
                     jwtOptions.Events = new JwtBearerEvents
                     {
                         OnAuthenticationFailed = AuthenticationFailed,

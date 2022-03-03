@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,7 @@ namespace APIFramework.Models.Errors
 {
     public class ValidationError
     {
-        public string PropertyName { get; set; }
-        public string ErrorDescription { get; set; }
+        public string PropertyName { get; set; } = string.Empty;
+        public string ErrorDescription { get; set; } = string.Empty;
     }
 }
