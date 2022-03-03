@@ -7,6 +7,7 @@ namespace APIFramework.API.Configuration.Startup
     {
         internal static void ConfigureDependencyInjection(this IServiceCollection services)
         {
+            services.AddSingleton<Interfaces.API.IAppSettings, AppSettings>();
             //if (AppSettings.UseMockdata)
             //{
             //    services.AddTransient<Interfaces.Business.Users.IUser, Mock.Business.Users.User>();

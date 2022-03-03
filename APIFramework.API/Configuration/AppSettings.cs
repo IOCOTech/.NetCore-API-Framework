@@ -8,13 +8,14 @@ namespace APIFramework.API.Configuration
         public AppSettings(IConfiguration config)
         {
             Config = config;
-            ApplicationMonitoringKey = Config.GetValue<string>("corsOriginsAllowed");
+            ApplicationMonitoringKey = Config.GetValue<string>("ApplicationMonitoringKey");
+            AllowedOrigins = Config.GetValue<string>("AllowedOrigins");
             Config.Bind("Authentication", Authentication);
-            //Config.Bind("EFCosmosConfig", EfCosmosDBSettings);
-            //Config.Bind("RapidAPISettings", RapidAPISettings);
         }
-        public string ApplicationMonitoringKey { get; private set; } = string.Empty;
 
+        public string ApplicationMonitoringKey { get; private set; } = string.Empty;
+        public string AllowedOrigins { get; private set; } = string.Empty;
         public Models.AppSettings.Authentication Authentication { get; private set; } = new();
+
     }
 }
