@@ -36,13 +36,11 @@ namespace APIFramework.API.Configuration.Startup
                         if (baseException is ValidationException)
                         {
                             logger.LogError("Validation Error: {UserId} {ValidationErrors} {RequestBody} {Claims}",
-                                new object[]
-                                {
                                     GetUserId(context.User),
                                     contextFeature.Error.Message,
                                     GetRequestBodyContents(context.Request),
                                     GetClaims(context.User)
-                                });
+                                );
                             context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                             await context.Response.WriteAsync(new APIError()
                             {
@@ -55,13 +53,11 @@ namespace APIFramework.API.Configuration.Startup
                         else if (baseException is ArgumentNullException || baseException is ArgumentException)
                         {
                             logger.LogError("Invalid Argument: {UserId} {Error} {RequestBody} {Claims}",
-                                new object[]
-                                {
                                     GetUserId(context.User),
                                     contextFeature.Error.Message,
                                     GetRequestBodyContents(context.Request),
                                     GetClaims(context.User)
-                                });
+                                );
 
                             context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                             await context.Response.WriteAsync(new APIError()
@@ -73,13 +69,11 @@ namespace APIFramework.API.Configuration.Startup
                         else
                         {
                             logger.LogError("Something went wrong: {UserId} {Error} {RequestBody} {Claims}",
-                                new object[]
-                                {
                                     GetUserId(context.User),
                                     contextFeature.Error,
                                     GetRequestBodyContents(context.Request),
                                     GetClaims(context.User)
-                                });
+                                );
 
                             await context.Response.WriteAsync(new APIError()
                             {
