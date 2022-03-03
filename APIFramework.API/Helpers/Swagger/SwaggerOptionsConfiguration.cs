@@ -27,7 +27,7 @@ namespace APIFramework.API.Helpers.Swagger
         {
             var info = new OpenApiInfo()
             {
-                Title = "APIFramework Travel API",
+                Title = "APIFramework API",
                 Version = description.ApiVersion.ToString(),
                 Description = "The API to securely access APIFramework data",
                 Contact = new OpenApiContact() { Name = "APIFramework", Email = "Weeva@unknown.com" },
